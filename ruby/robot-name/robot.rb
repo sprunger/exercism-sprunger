@@ -7,6 +7,10 @@ class Robot
     @name = random_string(2) + random_number(3)
   end
 
+  def reset
+    @name = random_string(2) + random_number(3)
+  end
+
   private
 
   def random_string(length=10)
