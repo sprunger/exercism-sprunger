@@ -1,10 +1,9 @@
 class Robot
 
   attr_accessor :name
-  @name
 
   def initialize
-    @name = random_string(2) + random_number(3)
+    reset
   end
 
   def reset
