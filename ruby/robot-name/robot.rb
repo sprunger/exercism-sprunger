@@ -18,8 +18,6 @@ class Robot
   end
 
   def select_random(length=10, chars="")
-    password = ''
-    length.times { password << chars[rand(chars.size)] }
-    password
+    length.times.collect { chars[rand(chars.size)] }.join
   end
 end
