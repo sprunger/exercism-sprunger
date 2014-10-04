@@ -2,33 +2,37 @@ class Prime
 
   def self.nth(n)
     raise ArgumentError if n < 1
-    p = prime_numbers(n)
-    p[n-1]
+    prime_numbers(n)[-1]
   end
 
-  def self.prime_numbers(n)
-    return [2] if n == 1
-    prime_numbers = []
-    while prime_numbers.length < (n)
-      (1..105000).each do |number|
-        prime_numbers << number if is_prime(number)
+  def self.prime_numbers(no_of_primes)
+    return [2] if no_of_primes == 1
+
+    prime_numbers=[]
+
+    count = 1
+    number = 3
+
+    while count < no_of_primes
+      sq_rt_of_num = Math.sqrt(number)
+      number_divisible_by = 2
+
+      while number_divisible_by <= sq_rt_of_num
+        break if(number % number_divisible_by == 0)
+        number_divisible_by = number_divisible_by + 1
       end
+
+      if number_divisible_by > sq_rt_of_num
+        prime_numbers << number
+        count = count + 1
+      end
+
+      number = number + 2
     end
 
-    prime_numbers.to_a
-  end
+    return prime_numbers
 
-  # Naive primality test
-  # Given an input number n, check whether any integer m from 2 to n − 1
-  # evenly divides n
-  def self.is_prime(n)
-    return false if (n % 2) == 0
-    (2..(n-1)).each do |x|
-      return false if (n % x) == 0
-    end
-    return true
   end
-
 end
 
 
@@ -39,8 +43,8 @@ end
 # require 'prime'
 
 # Prime.class_eval do
-#   def self.nth(which)
-#     raise ArgumentError if which < 1
-#     (Prime.first which)[-1]
+#   def self.nth(how_many)
+#     raise ArgumentError if how_many < 1
+#     (Prime.first how_many)[-1]
 #   end
 # end
