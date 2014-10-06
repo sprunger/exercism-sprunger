@@ -8,23 +8,16 @@ class Prime
   def self.prime_numbers(no_of_primes)
     return [2] if no_of_primes == 1
 
-    prime_numbers=[]
+    prime_numbers = []
 
-    count = 1
-    number = 3
+    number = 1
 
-    while count < no_of_primes
-      square_root = Math.sqrt(number)
+    while prime_numbers.count < no_of_primes
+      sq_rt = Math.sqrt(number)
       divisor = 2
 
-      (divisor..square_root).each do
-        (number % divisor) != 0 ? divisor +=1 : break
-      end
-
-      if divisor > square_root
-        prime_numbers << number
-        count +=1
-      end
+      (divisor..sq_rt).each { (number % divisor) != 0 ? divisor +=1 : break }
+      prime_numbers << number if divisor > sq_rt
 
       number += 2
     end
