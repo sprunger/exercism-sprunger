@@ -16,7 +16,10 @@ class Prime
       sq_rt = Math.sqrt(number)
       divisor = 2
 
-      (divisor..sq_rt).each { (number % divisor) != 0 ? divisor +=1 : break }
+      (divisor..sq_rt).each do
+        if (number % divisor) != 0 then divisor +=1 else break end
+      end
+
       prime_numbers << number if divisor > sq_rt
 
       number += 2
@@ -26,8 +29,6 @@ class Prime
 
   end
 end
-
-
 
 # Even though Prime has been included with Ruby since 1.9.3 that's not the
 # point of the exercise.
