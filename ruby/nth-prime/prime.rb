@@ -14,15 +14,14 @@ class Prime
     number = 3
 
     while count < no_of_primes
-      sq_rt_of_num = Math.sqrt(number)
-      number_divisible_by = 2
+      square_root = Math.sqrt(number)
+      divisor = 2
 
-      while number_divisible_by <= sq_rt_of_num
-        break if number % number_divisible_by == 0
-        number_divisible_by = number_divisible_by + 1
+      (divisor..square_root).each do
+        (number % divisor) != 0 ? divisor +=1 : break
       end
 
-      if number_divisible_by > sq_rt_of_num
+      if divisor > square_root
         prime_numbers << number
         count +=1
       end
