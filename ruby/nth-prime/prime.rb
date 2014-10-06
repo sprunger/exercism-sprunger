@@ -18,16 +18,16 @@ class Prime
       number_divisible_by = 2
 
       while number_divisible_by <= sq_rt_of_num
-        break if(number % number_divisible_by == 0)
+        break if number % number_divisible_by == 0
         number_divisible_by = number_divisible_by + 1
       end
 
       if number_divisible_by > sq_rt_of_num
         prime_numbers << number
-        count = count + 1
+        count +=1
       end
 
-      number = number + 2
+      number += 2
     end
 
     return prime_numbers
