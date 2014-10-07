@@ -1,7 +1,7 @@
 class Grains
 
   def initialize
-    @TOTAL_SQUARES = 64
+    @NUM_SQUARES = 64
   end
 
   def square(n)
@@ -9,7 +9,7 @@ class Grains
   end
 
   def total
-    2 ** (@TOTAL_SQUARES) - 1
+    2 ** @NUM_SQUARES - 1
   end
 
 end
