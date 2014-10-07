@@ -1,25 +1,16 @@
 class Grains
 
-  attr_accessor :squares
-
   def initialize
-    @squares = [0]
-    fill_squares
   end
 
-  def fill_squares
-    @squares[1] = 1
-    (2..64).each { |square|
-      @squares[square] = (2 * @squares[square-1])
-    }
-  end
-
-  def square(count)
-    @squares[count]
+  def square(n)
+    2 ** (n - 1)
+    #1 << ( n - 1 )
   end
 
   def total
-    @squares.reduce(:+)
+    2 ** (64) - 1
+    #(1 << 64) - 1
   end
 
 end
