@@ -21,7 +21,7 @@ def meetup_day(year, month, weekday, ordinal):
   days = [week[weekday] for week in c if week[weekday] != 0]
 
   if ordinal == 'teenth':
-    day = [day for day in days if day > 12][0]
+    day = next(day for day in days if day > 12)
   else:
     day = days[ordinal]
 
