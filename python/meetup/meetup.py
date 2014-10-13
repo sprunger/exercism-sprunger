@@ -1,7 +1,7 @@
 import calendar
 import datetime
 
-ORDINALS = { '1st': 0, '2nd': 1, '3rd': 2, '4th': 3, 'last': -1 }
+ORDINALS = { '1st': 0, '2nd': 1, '3rd': 2, '4th': 3, 'last': -1, 'teenth': 'teenth' }
 
 WEEKDAYS = {
   'Monday': calendar.MONDAY,
@@ -14,22 +14,15 @@ WEEKDAYS = {
 }
 
 def meetup_day(year, month, weekday, ordinal):
-  dt = datetime.date(year,month,1)
-  dow_lst = []
+  c = calendar.monthcalendar(year, month)
+  weekday = WEEKDAYS[weekday]
+  ordinal = ORDINALS[ordinal]
 
-  # Get the first given weekday of the month (e.g., Monday)
-  while dt.weekday() != WEEKDAYS[weekday]:
-    dt = dt + datetime.timedelta(days=1)
+  days = [week[weekday] for week in c if week[weekday] != 0]
 
-  # Get each given day of the month (e.g., all of the Mondays)
-  while dt.month == month:
-    dow_lst.append(dt)
+  if ordinal == 'teenth':
+    day = [day for day in days if day > 12][0]
+  else:
+    day = days[ordinal]
 
-    # Short circuit if we can
-    if ordinal == 'teenth' and dt.day > 12 and dt.day < 20:
-      return dt
-
-    dt = dt + datetime.timedelta(days=7)
-
-  return dow_lst[ORDINALS[ordinal]]
-
+  return datetime.date(year, month, day)
