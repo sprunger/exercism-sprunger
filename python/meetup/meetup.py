@@ -3,15 +3,7 @@ import datetime
 
 ORDINALS = { '1st': 0, '2nd': 1, '3rd': 2, '4th': 3, 'last': -1, 'teenth': 'teenth' }
 
-WEEKDAYS = {
-  'Monday': calendar.MONDAY,
-  'Tuesday': calendar.TUESDAY,
-  'Wednesday': calendar.WEDNESDAY,
-  'Thursday': calendar.THURSDAY,
-  'Friday': calendar.FRIDAY,
-  'Saturday': calendar.SATURDAY,
-  'Sunday': calendar.SUNDAY
-}
+WEEKDAYS = dict(zip(calendar.day_name, range(7)))
 
 def meetup_day(year, month, weekday, ordinal):
   c = calendar.monthcalendar(year, month)
