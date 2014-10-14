@@ -1,16 +1,16 @@
-def detect_anagrams(word, options):
-  result = []
+def detect_anagrams(word, candidates):
+  anagrams = []
 
   # Same word is not an anagram
-  options = [x for x in options if x.lower() != word.lower()]
+  candidates = [x for x in candidates if x.lower() != word.lower()]
 
-  letters = ''.join(sorted(word.lower()))
+  letters = sorted(word.lower())
 
-  for option in options:
-    anagram = ''.join(sorted(option.lower()))
+  for candidate in candidates:
+    anagram = sorted(candidate.lower())
     # If the sorted list of letters in two words are the same, presto!
     if letters == anagram:
-      result.append(option)
+      anagrams.append(candidate)
 
-  return result
+  return anagrams
 
