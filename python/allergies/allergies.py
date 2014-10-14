@@ -13,11 +13,14 @@ class Allergies:
 
   def __init__(self, score):
     self.score = score
-    self.list = []
+    self.allergies = []
 
     for allergen in sorted(self.allergens):
       if self.score & allergen != 0:
-        self.list.append(self.allergens[allergen])
+        self.allergies.append(self.allergens[allergen])
+
+  @property
+  def list(self): return self.allergies
 
   def is_allergic_to(self,allergen):
     return allergen in self.list
