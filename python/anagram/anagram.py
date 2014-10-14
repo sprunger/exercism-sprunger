@@ -1,11 +1,14 @@
+def is_anagram(word, candidate):
+  word = word.lower()
+  candidate = candidate.lower()
+
+  return word != candidate and sorted(word) == sorted(candidate)
+
 def detect_anagrams(word, candidates):
   anagrams = []
 
-  # Same word is not an anagram
-  candidates = [x for x in candidates if x.lower() != word.lower()]
-
   for candidate in candidates:
-    if sorted(word.lower()) == sorted(candidate.lower()):
+    if is_anagram(word, candidate):
       anagrams.append(candidate)
 
   return anagrams
