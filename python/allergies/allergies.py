@@ -20,14 +20,5 @@ class Allergies:
         self.list.append(self.allergens[allergen])
 
   def is_allergic_to(self,allergen):
-    if self.score == 0: return False
-    if self.findKey(allergen) & self.score != 0:
-      return True
-    else:
-      return False
+    return allergen in self.list
 
-  def findKey(self,val):
-    for key, value in self.allergens.items():
-      if value == val: return key
-
-    return None
