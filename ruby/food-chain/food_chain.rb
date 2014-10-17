@@ -32,14 +32,29 @@ class FoodChainSong
   end
 
   def verse(number_of_verses)
-    @song << @verse_start[number_of_verses]
+    song = ''
+    song << @verse_start[number_of_verses]
 
-    return @song if number_of_verses == 8
+    if number_of_verses != 8
+      (1..number_of_verses).reverse_each { |n| song << @accum[n] }
+      song << "I don't know why she swallowed the fly. Perhaps she'll die.\n"
+    end
 
-    (1..number_of_verses).reverse_each { |n| @song << @accum[n] }
-
-    @song << "I don't know why she swallowed the fly. Perhaps she'll die.\n"
-
-    return @song
+    return song
   end
+
+  def verses(*args)
+    song = ''
+    args.each do |n|
+      song << verse(n) << "\n"
+    end
+
+    return song
+
+  end
+
+  def sing()
+    verses(1, 8)
+  end
+
 end
