@@ -37,7 +37,7 @@ class FoodChainSong
   end
 
   def verses(first, last)
-    (first..last).map { |n| verse(n) }.join("\n") + "\n"
+    (first..last).collect { |n| verse(n) }.join("\n") + "\n"
   end
 
   def sing()
