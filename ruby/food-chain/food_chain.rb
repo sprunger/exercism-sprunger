@@ -1,59 +1,43 @@
 class FoodChainSong
 
+
+
   def initialize()
-    song = String.new
-    verses = String.new
+    @full_verse = Array.new()
+    @full_verse[1] = "I know an old lady who swallowed a fly.\n"
+    @full_verse[2] = "I know an old lady who swallowed a spider.\nIt wriggled and jiggled and tickled inside her.\n"
+    @full_verse[3] = "I know an old lady who swallowed a bird.\nHow absurd to swallow a bird!\n"
+    @full_verse[4] = "I know an old lady who swallowed a cat.\nImagine that, to swallow a cat!\n"
+    @full_verse[5] = "I know an old lady who swallowed a dog.\nWhat a hog, to swallow a dog!\n"
+    @full_verse[6] = "I know an old lady who swallowed a goat.\nJust opened her throat and swallowed a goat!\n"
+    @full_verse[7] = "I know an old lady who swallowed a cow.\nI don't know how she swallowed a cow!\n"
+    @full_verse[8] = "I know an old lady who swallowed a horse.\nShe's dead, of course!\n"
 
-    song = <<-SONG.gsub(/^ */, '')
-      blank
-      |I know an old lady who swallowed a fly.
-      |I know an old lady who swallowed a spider.\nIt wriggled and jiggled and tickled inside her.
-      |I know an old lady who swallowed a bird.\nHow absurd to swallow a bird!
-      |I know an old lady who swallowed a cat.\nImagine that, to swallow a cat!
-      |I know an old lady who swallowed a dog.\nWhat a hog, to swallow a dog!
-      |I know an old lady who swallowed a goat.\nJust opened her throat and swallowed a goat!
-      |I know an old lady who swallowed a cow.\nI don't know how she swallowed a cow!
-      |I know an old lady who swallowed a horse.\nShe's dead, of course!
-    SONG
+    @short_verse = Array.new()
+    @short_verse[2] = "She swallowed the spider to catch the fly."
+    @short_verse[3] = "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her."
+    @short_verse[4] = "She swallowed the cat to catch the bird."
+    @short_verse[5] = "She swallowed the dog to catch the cat."
+    @short_verse[6] = "She swallowed the goat to catch the dog."
+    @short_verse[7] = "She swallowed the cow to catch the goat."
 
-    @verse = Array.new(song.split('|'))
+    @last_verse = "I don't know why she swallowed the fly. Perhaps she'll die.\n"
 
-    verses = <<-VERSE.gsub(/^ */, '')
-      blank
-      |
-      |She swallowed the spider to catch the fly.
-      |She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
-      |She swallowed the cat to catch the bird.
-      |She swallowed the dog to catch the cat.
-      |She swallowed the goat to catch the dog.
-      |She swallowed the cow to catch the goat.
-    VERSE
-
-    @accum = Array.new(verses.split('|'))
-
-    @ending = "I don't know why she swallowed the fly. Perhaps she'll die.\n"
   end
 
-  def verse(number_of_verses)
-    song = ''
-    song << @verse[number_of_verses]
+  def verse(verse_number)
+    song = @full_verse[verse_number]
 
-    if number_of_verses != 8
-      (2..number_of_verses).reverse_each { |n| song << @accum[n] }
-      song << @ending
+    if verse_number != 8
+      (2..verse_number).reverse_each { |n| song += @short_verse[n] + "\n" }
+      song += @last_verse
     end
 
     return song
   end
 
-  def verses(*args)
-    song = ''
-    args.each do |n|
-      song << verse(n) << "\n"
-    end
-
-    return song
-
+  def verses(first, last)
+    (first..last).map { |n| verse(n) }.join("\n") + "\n"
   end
 
   def sing()
