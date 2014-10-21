@@ -1,27 +1,33 @@
+ASCII_A = ord('a')
+ASCII_Z = ord('z')
+ASCII_ZERO = ord('0')
+ASCII_NINE = ord('9')
+
+CIPHER_BLOCK_SIZE = 5
+
 def decode(cipher):
   plain = ''
   for c in cipher.lower():
-    if ord('a') <= ord(c) <= ord('z'):
-      offset = ord(c) - ord('a')
-      plain += chr(ord('z') - offset)
-    elif ord('0') <= ord(c) <= ord('9'):
+    if ASCII_A <= ord(c) <= ASCII_Z:
+      offset = ord(c) - ASCII_A
+      plain += chr(ASCII_Z - offset)
+    elif ASCII_ZERO <= ord(c) <= ASCII_NINE:
       plain += c
 
   return plain
 
 def encode(text):
-  block_size = 5
   cipher = ''
   output = ''
   for c in text.lower():
-    if ord('a') <= ord(c) <= ord('z'):
-      offset = ord(c) - ord('a')
-      cipher += chr(ord('z') - offset)
-    elif ord('0') <= ord(c) <= ord('9'):
+    if ASCII_A <= ord(c) <= ASCII_Z:
+      offset = ord(c) - ASCII_A
+      cipher += chr(ASCII_Z - offset)
+    elif ASCII_ZERO <= ord(c) <= ASCII_NINE:
       cipher += c
 
-  for i in range(0, len(cipher), block_size):
-     output += cipher[i:i+block_size] + ' '
+  for i in range(0, len(cipher), CIPHER_BLOCK_SIZE):
+     output += cipher[i:i+CIPHER_BLOCK_SIZE] + ' '
 
   return output.strip()
 
