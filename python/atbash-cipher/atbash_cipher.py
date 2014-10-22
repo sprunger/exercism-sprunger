@@ -1,33 +1,25 @@
-ASCII_A = ord('a')
-ASCII_Z = ord('z')
-ASCII_ZERO = ord('0')
-ASCII_NINE = ord('9')
+from string import ascii_lowercase, maketrans
 
 CIPHER_BLOCK_SIZE = 5
-
-def decode(cipher):
-  plain = ''
-  for c in cipher.lower():
-    if ASCII_A <= ord(c) <= ASCII_Z:
-      offset = ord(c) - ASCII_A
-      plain += chr(ASCII_Z - offset)
-    elif ASCII_ZERO <= ord(c) <= ASCII_NINE:
-      plain += c
-
-  return plain
+CIPHER_KEY = maketrans(ascii_lowercase, ascii_lowercase[::-1])
 
 def encode(text):
-  cipher = ''
-  output = ''
-  for c in text.lower():
-    if ASCII_A <= ord(c) <= ASCII_Z:
-      offset = ord(c) - ASCII_A
-      cipher += chr(ASCII_Z - offset)
-    elif ASCII_ZERO <= ord(c) <= ASCII_NINE:
-      cipher += c
+    cipher = ''
+    output = ''
 
-  for i in range(0, len(cipher), CIPHER_BLOCK_SIZE):
-     output += cipher[i:i+CIPHER_BLOCK_SIZE] + ' '
+    for c in text.lower():
+      if c.isalnum():
+        cipher += c.translate(CIPHER_KEY)
 
-  return output.strip()
+    for i in range(0, len(cipher), CIPHER_BLOCK_SIZE):
+      output += cipher[i:i + CIPHER_BLOCK_SIZE] + ' '
 
+    return output.strip()
+
+def decode(cipher):
+    message = ''
+    for c in cipher.lower():
+      if c.isalnum():
+        message += c.translate(CIPHER_KEY)
+
+    return message
