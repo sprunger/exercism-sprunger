@@ -3,23 +3,20 @@ from string import ascii_lowercase, maketrans
 CIPHER_BLOCK_SIZE = 5
 CIPHER_KEY = maketrans(ascii_lowercase, ascii_lowercase[::-1])
 
-def encode(text):
-    cipher = ''
-    output = ''
-
+def transpose(text):
+    transposed = ''
     for c in text.lower():
       if c.isalnum():
-        cipher += c.translate(CIPHER_KEY)
+        transposed += c.translate(CIPHER_KEY)
 
-    for i in range(0, len(cipher), CIPHER_BLOCK_SIZE):
-      output += cipher[i:i + CIPHER_BLOCK_SIZE] + ' '
+    return transposed
 
-    return output.strip()
+def encode(text):
+    cipher = transpose(text)
+
+    return " ".join([cipher[i:i + CIPHER_BLOCK_SIZE]
+                     for i in range(0, len(cipher), CIPHER_BLOCK_SIZE)])
 
 def decode(cipher):
-    message = ''
-    for c in cipher.lower():
-      if c.isalnum():
-        message += c.translate(CIPHER_KEY)
+    return transpose(cipher)
 
-    return message
