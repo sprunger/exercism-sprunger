@@ -5,7 +5,7 @@ class SumOfMultiples:
     return
 
   def to(self, limit):
-    return sum([
-      x for x in range(1,limit)
-        if [ n for n in self.divisors if x % n == 0]])
+    return sum(
+      value for value in range(1,limit)
+        if any(value % divisor == 0 for divisor in self.divisors))
 
