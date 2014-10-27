@@ -6,18 +6,14 @@ class SumOfMultiples
     @divisors = divisors
   end
 
-  # Class Method
   def self.to(limit)
-    new(3,5).to(limit)
+    SumOfMultiples.new(3,5).to(limit)
   end
 
-  # Instance Method
   def to(limit)
-    sum = 0
-    (1...limit).each do |i|
-      sum += i if divisors.any? { |d| i % d == 0 }
-    end
-    sum
+    (0...limit).select do |n|
+      divisors.any? { |divisor| n % divisor == 0 }
+    end.reduce(:+)
   end
 
 end
