@@ -3,7 +3,7 @@ class Binary
 
   def initialize(value)
     @binary = [0]
-    @binary = value.scan(/\d/).map(&:to_i) if value =~ /^[0|1]*$/
+    @binary = value.scan(/\d/).map(&:to_i) unless value =~ /[^01]/
   end
 
   def to_decimal()
