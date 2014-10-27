@@ -7,13 +7,9 @@ class Binary
   end
 
   def to_decimal()
-    total = 0
-
-    binary.reverse.each_with_index do |n, i|
-      total += n * 2**i
+    binary.reverse.each_with_index.inject(0) do |result, (n, i)|
+      result += n * 2**i
     end
-
-    total
   end
 end
 
