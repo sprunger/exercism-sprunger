@@ -1,17 +1,19 @@
 class Series
 
-  attr_reader :string
+  attr_reader :numeric_string
 
-  def initialize(string)
-    @string = string
+  def initialize(numeric_string)
+    @numeric_string = numeric_string
   end
 
   def slices(count)
-    raise ArgumentError if count > string.length
+    raise ArgumentError if count > numeric_string.length
+
     result = []
-    string.chars.each_cons(count) do |i|
+    numeric_string.chars.each_cons(count) do |i|
       result << i.map{|x| x.to_i}
     end
+
     return result
   end
 end
