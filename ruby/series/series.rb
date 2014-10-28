@@ -8,6 +8,6 @@ class Series
 
   def slices(count)
     raise ArgumentError if count > digits.length
-    digits.each_cons(count).inject([]) { |result,i| result << i }
+    digits.each_cons(count).to_a
   end
 end
