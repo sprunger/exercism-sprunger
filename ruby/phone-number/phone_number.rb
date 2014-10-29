@@ -11,17 +11,7 @@ class PhoneNumber
   end
 
   def area_code
-    number.slice(0,3) if valid?
-  end
-
-  private
-
-  def valid?
-    number != '0000000000'
-  end
-
-  def invalid
-    '0'*10
+    number.slice(0,3)
   end
 
   def exchange
@@ -30,6 +20,13 @@ class PhoneNumber
 
   def subscriber
     number.slice(6,4)
+  end
+
+
+  private
+
+  def invalid
+    '0'*10
   end
 
   def parse(string)
