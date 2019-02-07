@@ -2,7 +2,7 @@ package twofer
 
 import "fmt"
 
-// ShareWith returns a string, giving one to the name parameter and one to yourself
+// Share one of your two things with somebody
 // If name is blank, "you" is the default
 func ShareWith(name string) string {
 	if name == "" {
