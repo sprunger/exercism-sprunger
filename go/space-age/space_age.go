@@ -6,7 +6,7 @@ type Planet string
 var seconds float64 = 31557600
 
 // The number of seconds in planets oribtal period vs. Earth
-var planets = map[string]float64{
+var planets = map[Planet]float64{
 	"Earth":   1.0 * seconds,
 	"Mercury": 0.2408467 * seconds,
 	"Venus":   0.61519726 * seconds,
@@ -21,5 +21,5 @@ var planets = map[string]float64{
 // old a person would be for a given planet based on
 // the planets orbital period.
 func Age(age float64, planet Planet) float64 {
-	return age / planets[string(planet)]
+	return age / planets[planet]
 }
