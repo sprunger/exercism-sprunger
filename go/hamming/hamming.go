@@ -7,17 +7,17 @@ import "fmt"
 func Distance(a, b string) (int, error) {
 	var distance int = 0
 
-  // Could short circuit zero length but optimzation isn't really needed
+	// Could short circuit zero length but optimzation isn't really needed
 
 	if len(a) != len(b) {
 		return -1, fmt.Errorf("hamming: DNA strings must be of equal length")
 	}
 
-  for i, _ := range a {
-    if a[i] != b[i] {
-      distance++
-    }
-  }
+	for i, _ := range a {
+		if a[i] != b[i] {
+			distance++
+		}
+	}
 
 	return distance, nil
 }
