@@ -1,5 +1,6 @@
 package space
 
+// Planet contains just the name - learning to use types
 type Planet string
 
 // The number of seconds in an Earth year
@@ -17,7 +18,7 @@ var planets = map[Planet]float64{
 	"Neptune": 164.79132 * seconds,
 }
 
-// Given an age in seconds calculate how many years
+// Age when given an age in seconds calculate how many years
 // old a person would be for a given planet based on
 // the planets orbital period.
 func Age(age float64, planet Planet) float64 {
