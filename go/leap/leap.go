@@ -1,6 +1,6 @@
 package leap
 
-// IsLeapYear is the year given a leap year
+// IsLeapYear is the year argument a leap year
 func IsLeapYear(year int) bool {
 	// Not sure of idiomatic go - is it a one line conditional
 	// or nested statements?
