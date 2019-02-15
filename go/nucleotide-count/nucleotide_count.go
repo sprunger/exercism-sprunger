@@ -16,14 +16,8 @@ func (d DNA) Counts() (Histogram, error) {
 
 	for nucleotide := range d {
 		switch d[nucleotide] {
-		case 'A':
-			h['A']++
-		case 'C':
-			h['C']++
-		case 'G':
-			h['G']++
-		case 'T':
-			h['T']++
+		case 'A', 'C', 'G', 'T':
+			h[d[nucleotide]]++
 		default:
 			return h, errors.New("Invalid nucleotide in DNA")
 		}
