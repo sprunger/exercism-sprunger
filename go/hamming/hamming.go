@@ -4,14 +4,12 @@ import "fmt"
 
 // Distance will calculate the Hamming Distance between two DNA strands
 // Strands must be of equal length
-func Distance(a, b string) (int, error) {
+func Distance(a, b string) (distance int, err error) {
 	// Could short circuit zero length but optimzation isn't really needed
 
 	if len(a) != len(b) {
-		return 0, fmt.Errorf("hamming: DNA strings must be of equal length")
+		return distance, fmt.Errorf("hamming: DNA strings must be of equal length")
 	}
-
-	var distance int
 
 	for i := range a {
 		if a[i] != b[i] {
@@ -19,5 +17,5 @@ func Distance(a, b string) (int, error) {
 		}
 	}
 
-	return distance, nil
+	return distance, err
 }
