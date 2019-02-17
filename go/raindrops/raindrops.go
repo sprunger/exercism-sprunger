@@ -1,6 +1,6 @@
 package raindrops
 
-import "fmt"
+import "strconv"
 
 // Convert a number to a string, the contents of which depend on the number's factors.
 //   - If the number has 3 as a factor, output 'Pling'.
@@ -28,7 +28,7 @@ func Convert(drops int) string {
 	}
 
 	if speak == "" {
-		speak += fmt.Sprint(drops)
+		speak += strconv.Itoa(drops)
 	}
 
 	return speak
