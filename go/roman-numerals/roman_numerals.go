@@ -28,7 +28,8 @@ var valueMapping = [...]arabicToRoman{
 // ToRomanNumeral returns string representation of integer [1..3000]
 func ToRomanNumeral(input int) (result string, err error) {
 	if input < 1 || input > 3000 {
-		return result, fmt.Errorf("The value %d is out of range [1..3000]", input)
+		err = fmt.Errorf("The value %d is out of range [1..3000]", input)
+		return
 	}
 
 	for _, value := range valueMapping {
