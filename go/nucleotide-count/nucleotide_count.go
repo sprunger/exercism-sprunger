@@ -3,7 +3,7 @@ package dna
 import "errors"
 
 // Histogram is a mapping from nucleotide to its count in given DNA.
-type Histogram map[byte]int
+type Histogram map[rune]int
 
 // DNA is a list of nucleotides
 type DNA string
@@ -14,10 +14,10 @@ func (d DNA) Counts() (Histogram, error) {
 
 	h := Histogram{'A': 0, 'C': 0, 'G': 0, 'T': 0}
 
-	for nucleotide := range d {
-		switch d[nucleotide] {
+	for _, nucleotide := range d {
+		switch nucleotide {
 		case 'A', 'C', 'G', 'T':
-			h[d[nucleotide]]++
+			h[nucleotide]++
 		default:
 			return h, errors.New("Invalid nucleotide in DNA")
 		}
