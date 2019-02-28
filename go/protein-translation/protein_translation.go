@@ -4,36 +4,37 @@ import (
 	"errors"
 )
 
-// ErrStop indicates that one of the stop codons was read.
+// ErrStop indicates that one of the stop codons was read
 var ErrStop = errors.New("Stop")
 
-// ErrInvalidBase indicates that an unrecognized codon was read.
+// ErrInvalidBase indicates that an unrecognized codon was read
 var ErrInvalidBase = errors.New("Invalid Base")
 
-// FromRNA does
+// FromRNA takes an RNA strand and returns the proteins for each codon
 func FromRNA(rna string) (proteins []string, err error) {
+	const codonLength int = 3
 
-	for i := 0; i < len(rna); i += 3 {
-		codon := rna[i : i+3]
+	for i := 0; i < len(rna); i += codonLength {
 
+		codon := rna[i : i+codonLength]
 		protein, err := FromCodon(codon)
 
-		switch err {
-		case ErrInvalidBase:
+		if err == ErrInvalidBase {
 			return proteins, err
-		case ErrStop:
-			return proteins, nil
-		default:
-			proteins = append(proteins, protein)
 		}
+
+		if err == ErrStop {
+			return proteins, nil
+		}
+
+		proteins = append(proteins, protein)
 	}
 
-	return proteins, nil
+	return
 }
 
-// FromCodon does
+// FromCodon translates a 3-letter Codon to it's protein name
 func FromCodon(codon string) (protein string, err error) {
-
 	switch codon {
 	case "UAA", "UAG", "UGA":
 		protein, err = "", ErrStop
@@ -56,13 +57,4 @@ func FromCodon(codon string) (protein string, err error) {
 	}
 
 	return
-}
-
-// stopCodon is this a STOP codon
-func stopCodon(codon string) bool {
-	switch codon {
-	case "UAA", "UAG", "UGA":
-		return true
-	}
-	return false
 }
