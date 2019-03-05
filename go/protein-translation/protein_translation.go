@@ -24,7 +24,7 @@ func FromRNA(rna string) (proteins []string, err error) {
 		}
 
 		if err == ErrStop {
-			return proteins, nil
+			break
 		}
 
 		proteins = append(proteins, protein)
