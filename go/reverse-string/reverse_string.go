@@ -4,10 +4,10 @@ package reverse
 // It's less efficient than the canonical below, but far
 // more legible to me
 func String(input string) (output string) {
-	//var runes = make([]rune, len(input))
 	for _, char := range input {
 		output = string(char) + output
 	}
+
 	return
 }
 
