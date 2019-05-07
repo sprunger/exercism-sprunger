@@ -1,7 +1,6 @@
 package diffsquares
 
 // SquareOfSum returns the square of the sum of the first N natural numbers
-
 func SquareOfSum(n int) int {
 	// Gauss generalized formula for summation of consecutive numbers
 	sum := n * (n + 1) / 2
