@@ -4,7 +4,7 @@ package diffsquares
 
 func SquareOfSum(n int) int {
 	// Gauss generalized formula for summation of consecutive numbers
-	sum := n * (n + 1)/2
+	sum := n * (n + 1) / 2
 
 	return sum * sum
 
