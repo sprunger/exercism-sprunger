@@ -19,8 +19,6 @@ func Detect(subject string, candidates []string) (anagrams []string) {
 		return
 	}
 
-	//	subject = strings.ToLower(subject)
-
 	for _, candidate := range candidates {
 		if !strings.EqualFold(subject, candidate) {
 			if SortedString(candidate) == SortedString(subject) {
